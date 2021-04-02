@@ -60,6 +60,14 @@ client.connect(err => {
             })
     })
 
+    app.delete('/deletOrder/:id', (req, res) => {
+        const id = ObjectID(req.params.id)
+        orderCollection.findOneAndDelete({ _id: id })
+            .then((result, err) => {
+                res.json(result)
+            })
+    })
+
 
     app.post('/addOrder', (req, res) => {
         const newOrder = req.body;
